@@ -22,7 +22,7 @@ const AggregateChart = () => {
 
     return (
         <section className="aggregate-chart" style={{display: "flex", flexWrap: "wrap"}}>
-            <h4>Chart goes here</h4>
+            <h4>Summarising table chart</h4>
             <VictoryChart 
                 singleQuadrantDomainPadding={{x: false}}
                 height={200}
