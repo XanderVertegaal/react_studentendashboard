@@ -129,12 +129,17 @@ const sortData = (dataSet: UnsortedData[], sortingMethod: string) => {
 }
 
 const setFilteredState = (currentFilters: Filters, type: string, name: string, value: boolean) => {
-  if (value === true) {
-    currentFilters[type as keyof Filters].push(name)
-  } else {
-    currentFilters[type as keyof Filters] = currentFilters[type as keyof Filters].filter(item => item !== name)
+  let copiedFilter: Filters = {
+    parameters: [...currentFilters.parameters],
+    students: [...currentFilters.students],
+    assignments: [...currentFilters.assignments]
   }
-  return currentFilters
+  if (value === true) {
+    copiedFilter[type as keyof Filters].push(name)
+  } else {
+    copiedFilter[type as keyof Filters] = copiedFilter[type as keyof Filters].filter(item => item !== name)
+  }
+  return copiedFilter
 }
 
 export { getSheetData, processData, getChartData, sortData, setFilteredState }
