@@ -6,19 +6,10 @@ const AggregateChart = () => {
 
     const studentData = useAppSelector((state) => state.dataSet)
     const sortingMethod = useAppSelector((state) => state.sortMethod)
+    const filterMethod = useAppSelector((state) => state.filters)
     const unsortedData = getChartData(studentData)
 
     const chartData = sortData(unsortedData, sortingMethod)
-
-/*
-    Target chartData
-    [
-        {id: 1, exercise: 'SCRUM', diffScore: 1.9, funScore: 2},
-        {id: 2, exercise: 'W1D1-1', diffScore: 3.1, funScore: 3},
-        {id: 3, exercise: 'W1D1-2', diffScore: 2, funScore: 3}
-        ... 
-    ]
-*/
 
     return (
         <section className="aggregate-chart" style={{display: "flex", flexWrap: "wrap"}}>
@@ -58,6 +49,7 @@ const AggregateChart = () => {
                     offset={2} 
                     colorScale={"qualitative"}
                 >
+                {filterMethod.parameters.includes('difficulty') && 
                 <VictoryBar
                     barWidth={2}
                     style={
@@ -65,28 +57,20 @@ const AggregateChart = () => {
                             fill: 'red'
                         }}
                     }
-                    // data={[
-                    //     {id: 1, exercise: 'SCRUM', diffScore: 1.9, funScore: 2},
-                    //     {id: 2, exercise: 'W1D1-1', diffScore: 3.1, funScore: 3},
-                    //     {id: 3, exercise: 'W1D1-2', diffScore: 2, funScore: 3}
-                    // ]}
                     data={chartData}
                     x="exercise"
                     y="diffScore"
-                    // tickFormat={exerciseNames}
                 />
+                }
 
+                {filterMethod.parameters.includes('fun') &&
                 <VictoryBar
                     barWidth={2}
                     data={chartData}
-                    // data={[
-                    //     {id: 1, exercise: 'SCRUM', diffScore: 1.9, funScore: 2},
-                    //     {id: 2, exercise: 'W1D1-1', diffScore: 3.1, funScore: 3},
-                    //     {id: 3, exercise: 'W1D1-2', diffScore: 2, funScore: 3}
-                    // ]}
                     x="exercise"
                     y="funScore"
                 />
+                }
                 </VictoryGroup>
             </VictoryChart>
         </section>

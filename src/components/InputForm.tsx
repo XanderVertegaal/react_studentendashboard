@@ -59,10 +59,10 @@ const InputForm = () => {
 
             <fieldset>
                 <legend>Show only:</legend>
-                <input type="checkbox" name="fun" id="show-fun" onChange={filterHandler} value='fun'/>
+                <input type="checkbox" name="fun" id="show-fun" onChange={filterHandler} value='fun' checked={filterData.parameters.includes('fun')}/>
                 <label htmlFor="show-fun">Fun</label><br/>
 
-                <input type="checkbox" name="difficulty" id="show-difficulty" onChange={filterHandler} value='difficulty' />
+                <input type="checkbox" name="difficulty" id="show-difficulty" onChange={filterHandler} value='difficulty' checked={filterData.parameters.includes('difficulty')} />
                 <label htmlFor="show-difficulty">Difficulty</label><br/>
 
                 <input type="range" name="score" id="show-score" />
