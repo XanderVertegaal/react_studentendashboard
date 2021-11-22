@@ -24,5 +24,11 @@ export interface StudentEntry {
     id: number;
     exercise: string;
     diffScore: number;
-    funScore: 2
+    funScore: number;
+  }
+
+  export interface scoreList {
+      assignmentName: string; 
+      diffScores: number[], 
+      funScores: number[]
   }

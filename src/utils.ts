@@ -1,4 +1,4 @@
-import { StudentEntry, Filters, UnsortedData } from "./Interfaces"
+import { StudentEntry, Filters, UnsortedData, scoreList } from "./Interfaces"
 
 const getSheetData = async () => {
   try {
@@ -42,15 +42,15 @@ const processData = (data: {values: []}) => {
   return dataSet
 }
 
-const getChartData = (storeData: StudentEntry[]) => {
+const filterStudents = (unfilteredData: StudentEntry[], filterMethod: Filters): StudentEntry[] =>
+  unfilteredData.filter(x => filterMethod.students.includes(x.firstName))
 
-  let aggregatedScores: {
-    assignmentName: string; 
-    diffScores: number[], 
-    funScores: number[]
-  }[] = []
+const getChartData = (storeData: StudentEntry[], filterMethod: Filters): UnsortedData[] => {
 
-  for (let student of storeData) {
+  const filteredData = filterStudents(storeData, filterMethod)
+
+  let aggregatedScores: scoreList[] = []
+  for (let student of filteredData) {
     for (let assignment of student.projects) {
       if (aggregatedScores.some(x => x.assignmentName === assignment.projectName) === false) {
         aggregatedScores.push({
@@ -65,7 +65,10 @@ const getChartData = (storeData: StudentEntry[]) => {
       }
     }  
   }
-  let chartData: {id: number; exercise: string; diffScore: number; funScore: number}[] = []
+
+  // Calculate average
+  let chartData: UnsortedData[] = []
+
   let newId : number = 1
   for (let item of aggregatedScores) {
     let averageDiffScore: number = getAverage(item.diffScores)
@@ -78,6 +81,7 @@ const getChartData = (storeData: StudentEntry[]) => {
     })
     newId++
   }
+
   return chartData
 }
 

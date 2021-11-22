@@ -7,7 +7,9 @@ const AggregateChart = () => {
     const studentData = useAppSelector((state) => state.dataSet)
     const sortingMethod = useAppSelector((state) => state.sortMethod)
     const filterMethod = useAppSelector((state) => state.filters)
-    const unsortedData = getChartData(studentData)
+
+
+    const unsortedData = getChartData(studentData, filterMethod)
 
     const chartData = sortData(unsortedData, sortingMethod)
 

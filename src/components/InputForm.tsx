@@ -33,7 +33,6 @@ const InputForm = () => {
     }
 
     const filterHandler = (event: ChangeEvent<HTMLInputElement>) => {
-        console.log('Fired!')
         const target = event.target
         let filteredState: Filters = {students: [], parameters: [], assignments: []}
         if (target.id.includes('-parameter-')) {
