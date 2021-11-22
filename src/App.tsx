@@ -5,14 +5,13 @@ import Header from './components/Header';
 import Sidebar from './components/Sidebar';
 import Home from './components/Home';
 import StudentPage from './components/StudentPage';
-import {getSheetData, processData, StudentEntry} from './utils';
+import {getSheetData, processData} from './utils';
+import { StudentEntry } from './Interfaces';
 import { setData } from './actions/setData';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 const App = () => {
   const dispatch = useAppDispatch();
-
-  console.log(process.env)
 
   useEffect(() => {
     getSheetData()

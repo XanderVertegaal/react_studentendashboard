@@ -1,3 +1,5 @@
+import { StudentEntry, Filters, UnsortedData } from "./Interfaces"
+
 const getSheetData = async () => {
   try {
     const response = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/1BHjq5MjpuSItvVbnQcEdQt_v956-Ks1lr3f_nEFkTks/values/Blad1!A2:D561?key=${process.env.REACT_APP_API_KEY}`)
@@ -11,28 +13,6 @@ const getSheetData = async () => {
   } catch (error) {
     console.error(error);
   }
-}
-
-export interface StudentEntry {
-  firstName: string;
-  // lastName: string;
-  // age: number;
-  // img: string;
-  projects: [
-    ProjectEntry
-  ]
-}
-
-export interface ProjectEntry {
-  projectName: string;
-  difficultyScore: number;
-  funScore: number
-}
-  
-export interface Filters {
-  students: string[];
-  assignments: string[];
-  parameters: string[];
 }
 
 const processData = (data: {values: []}) => {
@@ -102,13 +82,6 @@ const getChartData = (storeData: StudentEntry[]) => {
 }
 
 const getAverage = (values: number[]): number => (values.reduce((total, current) => total + current) / values.length)
-
-interface UnsortedData {
-  id: number;
-  exercise: string;
-  diffScore: number;
-  funScore: 2
-}
 
 const sortData = (dataSet: UnsortedData[], sortingMethod: string) => {
   let sortedDataset: UnsortedData[] = []

@@ -1,4 +1,4 @@
-import { Filters } from "../utils"
+import { Filters } from "../Interfaces"
 
 export const setFilter = (value: Filters) => {
     return {

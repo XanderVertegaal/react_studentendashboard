@@ -1,9 +1,9 @@
-import { Filters } from "../utils"
+import { Filters } from "../Interfaces"
 
 const initialState: Filters = {
     students: [],
     assignments: [],
-    parameters: []
+    parameters: ['fun', 'difficulty']
 }
 
 interface FilterAction {

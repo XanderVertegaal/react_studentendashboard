@@ -4,17 +4,15 @@ import AssignmentSelector from "./AssignmentSelector"
 import { ChangeEvent } from "react"
 import { setSortCurriculum, setSortDifficulty, setSortFun } from "../actions/setSortMethod"
 import { setFilter } from "../actions/setFilter"
-import { setFilteredState, Filters } from "../utils"
+import { setFilteredState } from "../utils"
 
 const InputForm = () => {
     const dispatch = useAppDispatch();
     const storeData = useAppSelector((state) => state.dataSet);
     const filterData = useAppSelector((state) => state.filters)
-
-    console.log('Current filter data:', filterData)
     
-    const nameList = storeData.map((x: {firstName: string}) => x.firstName) ;
-    const assignmentList : string[] = storeData[0].projects.map((x: {projectName: string}) => x.projectName);
+    const nameList = storeData.map(x => x.firstName) ;
+    const assignmentList = storeData[0].projects.map(x => x.projectName);
 
     const sortHandler = (event: ChangeEvent<HTMLInputElement>) => {
         const target = event.target
@@ -35,11 +33,9 @@ const InputForm = () => {
 
     const filterHandler = (event: ChangeEvent<HTMLInputElement>) => {
         const target = event.target
-        const filteredState: Filters = setFilteredState(filterData, 'parameters', target.value, target.checked)
-        console.log('Parameters:', filteredState.parameters)
+        const filteredState = setFilteredState(filterData, 'parameters', target.value, target.checked)
         dispatch(setFilter(filteredState))
     } 
-
 
     return (
         <form>
@@ -68,7 +64,7 @@ const InputForm = () => {
                 <input type="range" name="score" id="show-score" />
                 <label htmlFor="show-score">Score</label><br/>
 
-                <StudentSelector nameList={nameList} />
+                <StudentSelector nameList={nameList} onChange={filterHandler}/>
                 <AssignmentSelector assignmentList={assignmentList} />
 
             </fieldset>

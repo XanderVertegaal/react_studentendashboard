@@ -1,4 +1,4 @@
-import { StudentEntry } from "../utils";
+import { StudentEntry } from "../Interfaces";
 
 const initialState: StudentEntry[] = 
     [
