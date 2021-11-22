@@ -47,18 +47,19 @@ const filterStudents = (unfilteredData: StudentEntry[], filterMethod: Filters): 
 
 const getChartData = (storeData: StudentEntry[], filterMethod: Filters): UnsortedData[] => {
 
-  const filteredData = filterStudents(storeData, filterMethod)
-
+  const filteredStudentData = filterStudents(storeData, filterMethod)
+  
   let aggregatedScores: scoreList[] = []
-  for (let student of filteredData) {
+  
+  for (let student of filteredStudentData) {
     for (let assignment of student.projects) {
-      if (aggregatedScores.some(x => x.assignmentName === assignment.projectName) === false) {
+      if (filterMethod.assignments.includes(assignment.projectName) && aggregatedScores.some(x => x.assignmentName === assignment.projectName) === false) {
         aggregatedScores.push({
           assignmentName: assignment.projectName,
           diffScores: [assignment.difficultyScore],
           funScores: [assignment.funScore]
         })  
-      } else {
+      } else if (filterMethod.assignments.includes(assignment.projectName)) {
         let existEntry = aggregatedScores.find(x => x.assignmentName === assignment.projectName)
         existEntry?.diffScores.push(assignment.difficultyScore)
         existEntry?.funScores.push(assignment.funScore)
