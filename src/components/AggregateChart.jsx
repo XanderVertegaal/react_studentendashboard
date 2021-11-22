@@ -10,7 +10,6 @@ const AggregateChart = () => {
 
 
     const unsortedData = getChartData(studentData, filterMethod)
-
     const chartData = sortData(unsortedData, sortingMethod)
 
     return (

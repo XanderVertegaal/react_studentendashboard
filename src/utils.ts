@@ -45,12 +45,13 @@ const processData = (data: {values: []}) => {
 const filterStudents = (unfilteredData: StudentEntry[], filterMethod: Filters): StudentEntry[] =>
   unfilteredData.filter(x => filterMethod.students.includes(x.firstName))
 
+  
 const getChartData = (storeData: StudentEntry[], filterMethod: Filters): UnsortedData[] => {
 
   const filteredStudentData = filterStudents(storeData, filterMethod)
   
   let aggregatedScores: scoreList[] = []
-  
+
   for (let student of filteredStudentData) {
     for (let assignment of student.projects) {
       if (filterMethod.assignments.includes(assignment.projectName) && aggregatedScores.some(x => x.assignmentName === assignment.projectName) === false) {
