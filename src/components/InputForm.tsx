@@ -5,6 +5,7 @@ import { ChangeEvent } from "react"
 import { setSortCurriculum, setSortDifficulty, setSortFun } from "../actions/setSortMethod"
 import { setFilter } from "../actions/setFilter"
 import { setFilteredState } from "../utils"
+import { Filters } from "../Interfaces"
 
 const InputForm = () => {
     const dispatch = useAppDispatch();
@@ -32,8 +33,16 @@ const InputForm = () => {
     }
 
     const filterHandler = (event: ChangeEvent<HTMLInputElement>) => {
+        console.log('Fired!')
         const target = event.target
-        const filteredState = setFilteredState(filterData, 'parameters', target.value, target.checked)
+        let filteredState: Filters = {students: [], parameters: [], assignments: []}
+        if (target.id.includes('-parameter-')) {
+            filteredState = setFilteredState(filterData, 'parameters', target.value, target.checked)
+        } else if (target.id.includes('-student-')) {
+            filteredState = setFilteredState(filterData, 'students', target.value, target.checked)
+        } else if (target.id.includes('-assignment-')) {
+            filteredState = setFilteredState(filterData, 'assignments', target.value, target.checked)
+        }
         dispatch(setFilter(filteredState))
     } 
 
@@ -55,17 +64,39 @@ const InputForm = () => {
 
             <fieldset>
                 <legend>Show only:</legend>
-                <input type="checkbox" name="fun" id="show-fun" onChange={filterHandler} value='fun' checked={filterData.parameters.includes('fun')}/>
+                <input 
+                    type="checkbox" 
+                    name="fun" 
+                    id="show-parameter-fun" 
+                    onChange={filterHandler} 
+                    value='fun' 
+                    checked={filterData.parameters.includes('fun')}
+                />
                 <label htmlFor="show-fun">Fun</label><br/>
 
-                <input type="checkbox" name="difficulty" id="show-difficulty" onChange={filterHandler} value='difficulty' checked={filterData.parameters.includes('difficulty')} />
+                <input 
+                    type="checkbox" 
+                    name="difficulty" 
+                    id="show-parameter-difficulty" 
+                    onChange={filterHandler} 
+                    value='difficulty' 
+                    checked={filterData.parameters.includes('difficulty')} 
+                />
                 <label htmlFor="show-difficulty">Difficulty</label><br/>
 
                 <input type="range" name="score" id="show-score" />
                 <label htmlFor="show-score">Score</label><br/>
 
-                <StudentSelector nameList={nameList} onChange={filterHandler}/>
-                <AssignmentSelector assignmentList={assignmentList} />
+                <StudentSelector 
+                    nameList={nameList} 
+                    filterHandler={filterHandler}
+                    currentFilters={filterData}
+                />
+                <AssignmentSelector 
+                    assignmentList={assignmentList}
+                    filterHandler={filterHandler}
+                    currentFilters={filterData}
+                />
 
             </fieldset>
         </form>

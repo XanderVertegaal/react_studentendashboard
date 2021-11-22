@@ -1,7 +1,7 @@
 import { Filters } from "../Interfaces"
 
 const initialState: Filters = {
-    students: [],
+    students: ['Evelyn', 'Aranka', 'Floris', 'Hector', 'Martina', 'Maurits'],
     assignments: [],
     parameters: ['fun', 'difficulty']
 }

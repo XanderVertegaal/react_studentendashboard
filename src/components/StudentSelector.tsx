@@ -1,15 +1,28 @@
 import { faUserGraduate } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { ChangeEvent } from "react"
+import { Filters } from "../Interfaces"
 
-const StudentSelector = (props: any) => {
+type Props = {
+    nameList: string[];
+    filterHandler: (event: ChangeEvent<HTMLInputElement>) => void;
+    currentFilters: Filters
+}
+
+const StudentSelector: React.FC<Props> = ({nameList, filterHandler, currentFilters}) => {
     
-    let studentItems = props.nameList.map((name: any) => {
+    let studentItems = nameList.map((name: any) => {
         return (
             <li key={`chk-${name}`} >
-                
-                <input type="checkbox" id={`chk-${name}`} value={name}/>
-                <FontAwesomeIcon icon={faUserGraduate} />
-                <label htmlFor={`chk-${name}`}>{name}</label>
+                <input 
+                    type="checkbox" 
+                    id={`show-student-${name}`} 
+                    value={name}
+                    onChange={filterHandler}
+                    checked={currentFilters.students.includes(name)}
+                />
+                        <FontAwesomeIcon icon={faUserGraduate} />
+                <label htmlFor={`show-student-${name}`}>{name}</label>
             </li>)
     })
     
