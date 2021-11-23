@@ -5,7 +5,7 @@ const getSheetData = async () => {
     const response = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/1BHjq5MjpuSItvVbnQcEdQt_v956-Ks1lr3f_nEFkTks/values/Blad1!A2:D561?key=${process.env.REACT_APP_API_KEY}`)
 
     if (!response.ok) {
-      const errorMessage: string = `Data could not be retrieved: ${response.status}`
+      const errorMessage = `Data could not be retrieved: ${response.status}`
       throw new Error(errorMessage)
     }
     const data = await response.json()
@@ -15,13 +15,48 @@ const getSheetData = async () => {
   }
 }
 
-const processData = (data: {values: []}) => {
+const getPersonalData = async (studentData: any) => {
+  const listOfNames = studentData.values.map((x: string[]) => x[0])
+  const uniqueNames: string[] = []
+  for (let name of listOfNames) {
+    if (uniqueNames.includes(name) === false) uniqueNames.push(name) }
+  const numberOfStudents = uniqueNames.length
+
+  try {
+    const response = await fetch(`https://randomuser.me/api/?results=${numberOfStudents}`)
+    if (!response.ok) {
+      const errorMessage = `Data could not be retrieved: ${response.status}`
+      throw new Error(errorMessage)
+    }
+    const personalData = await response.json()
+    return personalData.results
+
+  } catch (error) {
+      console.error(error);
+  }
+}
+
+const processData = async (data: any) => {
+    
+  const personalData = await getPersonalData(data)
+  
+  let thisIndex: number = 0
   let dataSet: StudentEntry[] = []
   for (let entry of data.values) {
     if (dataSet.some(x => x.firstName === entry[0]) === false) {
-      let newName = entry[0]
+      let newFirstName = entry[0]
+      let newLastName = personalData[thisIndex].name.last
+      let newGender = personalData[thisIndex].gender
+      let newAge = personalData[thisIndex].dob.age 
+      let newImage = personalData[thisIndex].picture.medium
+      let newEmail = `${newFirstName.toLowerCase()}.${newLastName.toLowerCase()}@wincacademy.nl`
       dataSet.push({
-        firstName: newName,
+        firstName: newFirstName,
+        lastName: newLastName,
+        gender: newGender,
+        age: newAge,
+        image: newImage,
+        email: newEmail,
         projects: [
           {
             projectName: entry[1],
@@ -30,6 +65,7 @@ const processData = (data: {values: []}) => {
           }
         ]
       })
+      thisIndex++
     } else {
       let existingEntry = dataSet.find(x => x.firstName === entry[0])!
       existingEntry.projects.push({

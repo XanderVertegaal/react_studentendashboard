@@ -1,13 +1,16 @@
 export interface StudentEntry {
     firstName: string;
-    // lastName: string;
-    // age: number;
-    // img: string;
+    lastName: string;
+    gender: string;
+    age: number;
+    image: string;
+    email: string;
     projects: [
       ProjectEntry
     ]
   }
   
+
   export interface ProjectEntry {
     projectName: string;
     difficultyScore: number;

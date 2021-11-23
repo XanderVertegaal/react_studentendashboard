@@ -1,18 +1,20 @@
 import { StudentEntry } from "../Interfaces";
 
-const initialState: StudentEntry[] = 
-    [
-        {
-            firstName: '',
-            projects: [ 
-                {
-                projectName: '',
-                difficultyScore: 0,
-                funScore: 0
-                }
-            ]
-        }
-    ]
+const initialState: StudentEntry[] = [
+    {
+        firstName: '',
+        lastName: '',
+        gender: '',
+        age: 0,
+        image: '',
+        email: '',
+        projects: [{
+            projectName: '',
+            difficultyScore: 0,
+            funScore: 0
+        }]
+      }
+]
 
 interface setDataSetAction {
     type: string,
