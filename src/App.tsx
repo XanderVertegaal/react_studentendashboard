@@ -19,7 +19,7 @@ const App = () => {
       .then((dataSet: StudentEntry[]) => {
         dispatch(setData(dataSet))
 
-        // Populate filters dynamically on the basis of the dataSet
+        // Fill filters with all available data by default
         const nameList = dataSet.map(x => x.firstName) ;
         const assignmentList = dataSet[0].projects.map(x => x.projectName);
         const newFilter: Filters = {

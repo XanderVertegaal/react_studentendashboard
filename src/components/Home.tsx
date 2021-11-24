@@ -15,7 +15,10 @@ const Home = () => {
                 sortingMethod={sortingMethod}
                 filterMethod={filterMethod}
             />
-            <InputForm />
+            <InputForm 
+                studentData={studentData}
+                filterMethod={filterMethod}
+            />
         </article>
     )
 }

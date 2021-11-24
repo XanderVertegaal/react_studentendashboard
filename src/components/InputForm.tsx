@@ -1,19 +1,19 @@
 import StudentSelector from "./StudentSelector"
-import { useAppDispatch, useAppSelector } from "../app/hooks"
+import { useAppDispatch } from "../app/hooks"
 import AssignmentSelector from "./AssignmentSelector"
 import { ChangeEvent } from "react"
 import { setSortCurriculum, setSortDifficulty, setSortFun } from "../actions/setSortMethod"
 import { setFilter } from "../actions/setFilter"
 import { setFilteredState } from "../utils"
-import { Filters } from "../Interfaces"
+import { Filters, StudentEntry } from "../Interfaces"
 
-const InputForm = () => {
+const InputForm = (props: any) => {
     const dispatch = useAppDispatch();
-    const storeData = useAppSelector((state) => state.dataSet);
-    const filterData = useAppSelector((state) => state.filters)
+    const studentData: StudentEntry[] = props.studentData
+    const filterMethod: Filters = props.filterMethod
     
-    const nameList = storeData.map(x => x.firstName) ;
-    const assignmentList = storeData[0].projects.map(x => x.projectName);
+    const nameList = studentData.map(x => x.firstName) ;
+    const assignmentList = studentData[0].projects.map(x => x.projectName);
 
     const sortHandler = (event: ChangeEvent<HTMLInputElement>) => {
         const target = event.target
@@ -36,11 +36,11 @@ const InputForm = () => {
         const target = event.target
         let filteredState: Filters = {students: [], parameters: [], assignments: []}
         if (target.id.includes('-parameter-')) {
-            filteredState = setFilteredState(filterData, 'parameters', target.value, target.checked)
+            filteredState = setFilteredState(filterMethod, 'parameters', target.value, target.checked)
         } else if (target.id.includes('-student-')) {
-            filteredState = setFilteredState(filterData, 'students', target.value, target.checked)
+            filteredState = setFilteredState(filterMethod, 'students', target.value, target.checked)
         } else if (target.id.includes('-assignment-')) {
-            filteredState = setFilteredState(filterData, 'assignments', target.value, target.checked)
+            filteredState = setFilteredState(filterMethod, 'assignments', target.value, target.checked)
         }
         dispatch(setFilter(filteredState))
     } 
@@ -69,7 +69,7 @@ const InputForm = () => {
                     id="show-parameter-fun" 
                     onChange={filterHandler} 
                     value='fun' 
-                    checked={filterData.parameters.includes('fun')}
+                    checked={filterMethod.parameters.includes('fun')}
                 />
                 <label htmlFor="show-fun">Fun</label><br/>
 
@@ -79,7 +79,7 @@ const InputForm = () => {
                     id="show-parameter-difficulty" 
                     onChange={filterHandler} 
                     value='difficulty' 
-                    checked={filterData.parameters.includes('difficulty')} 
+                    checked={filterMethod.parameters.includes('difficulty')} 
                 />
                 <label htmlFor="show-difficulty">Difficulty</label><br/>
 
@@ -89,12 +89,12 @@ const InputForm = () => {
                 <StudentSelector 
                     nameList={nameList} 
                     filterHandler={filterHandler}
-                    currentFilters={filterData}
+                    currentFilters={filterMethod}
                 />
                 <AssignmentSelector 
                     assignmentList={assignmentList}
                     filterHandler={filterHandler}
-                    currentFilters={filterData}
+                    currentFilters={filterMethod}
                 />
 
             </fieldset>
