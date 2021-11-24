@@ -10,7 +10,7 @@ const StudentTable: React.FC<Props> = ({studentScores}) => {
     
     const studentRows = studentScores.map(entry => {
         return (
-            <tr>
+            <tr key={entry.projectName}>
                 <td>{entry.projectName}</td>
                 <td>{entry.difficultyScore}</td>
                 <td>{entry.funScore}</td>

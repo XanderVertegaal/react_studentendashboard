@@ -8,6 +8,13 @@ const StudentPage = () => {
     let myParams = useParams()
     const studentData = useAppSelector(state => state.dataSet)
     const student = studentData.find(x => x.firstName === myParams.studentname)!
+    console.log('Student:', [student])
+
+    const studentFilterMethod = {
+        students: [student.firstName],
+        assignments: student.projects.map(x => x.projectName),
+        parameters: ['fun', 'curriculum', 'difficulty']
+    }
 
     return (
         <article className='student-page'>
@@ -17,11 +24,11 @@ const StudentPage = () => {
                 <p>{student.age} years old</p>
                 <p>{student.email}</p>
             </section>
-            {/* <EvaluationChart 
+            <EvaluationChart 
                 studentData={studentData}
                 sortingMethod='curriculum'
-                filterMethod={['difficulty', 'fun']}
-            /> */}
+                filterMethod={studentFilterMethod}
+            />
             <section className="student-table-section">
                 <h4>Evaluation scores:</h4>
                 <StudentPageTable studentScores={student.projects}/>

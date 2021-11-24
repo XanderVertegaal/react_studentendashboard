@@ -7,6 +7,10 @@ const EvaluationChart = props => {
     const sortingMethod = props.sortingMethod
     const filterMethod = props.filterMethod
 
+    console.log('Student data:', studentData)
+    console.log('Sorting method:', sortingMethod)
+    console.log('Filter method', filterMethod)
+
     const unsortedData = getChartData(studentData, filterMethod)
     const chartData = sortData(unsortedData, sortingMethod)
 
