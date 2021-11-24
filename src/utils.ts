@@ -36,27 +36,21 @@ const getPersonalData = async (studentData: any) => {
   }
 }
 
-const processData = async (data: any) => {
+const processData = async (rawSheetData: any) => {
     
-  const personalData = await getPersonalData(data)
+  const personalData = await getPersonalData(rawSheetData)
   
   let thisIndex: number = 0
   let dataSet: StudentEntry[] = []
-  for (let entry of data.values) {
+  for (let entry of rawSheetData.values) {
     if (dataSet.some(x => x.firstName === entry[0]) === false) {
-      let newFirstName = entry[0]
-      let newLastName = personalData[thisIndex].name.last
-      let newGender = personalData[thisIndex].gender
-      let newAge = personalData[thisIndex].dob.age 
-      let newImage = personalData[thisIndex].picture.medium
-      let newEmail = `${newFirstName.toLowerCase()}.${newLastName.toLowerCase()}@wincacademy.nl`
       dataSet.push({
-        firstName: newFirstName,
-        lastName: newLastName,
-        gender: newGender,
-        age: newAge,
-        image: newImage,
-        email: newEmail,
+        firstName: entry[0],
+        lastName: personalData[thisIndex].name.last,
+        gender: personalData[thisIndex].gender,
+        age: personalData[thisIndex].dob.age,
+        image: personalData[thisIndex].picture.large,
+        email: `${entry[0].toLowerCase()}.${personalData[thisIndex].name.last.toLowerCase()}@wincacademy.nl`,
         projects: [
           {
             projectName: entry[1],

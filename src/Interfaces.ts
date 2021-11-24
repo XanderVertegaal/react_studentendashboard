@@ -10,7 +10,6 @@ export interface StudentEntry {
     ]
   }
   
-
   export interface ProjectEntry {
     projectName: string;
     difficultyScore: number;
