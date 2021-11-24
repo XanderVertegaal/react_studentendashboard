@@ -1,19 +1,17 @@
 import { VictoryBar, VictoryChart, VictoryAxis, VictoryTheme, VictoryGroup, VictoryLabel} from 'victory'
 import { getChartData, sortData } from '../utils'
-import { useAppSelector } from '../app/hooks'
 
-const AggregateChart = () => {
+const EvaluationChart = props => {
 
-    const studentData = useAppSelector((state) => state.dataSet)
-    const sortingMethod = useAppSelector((state) => state.sortMethod)
-    const filterMethod = useAppSelector((state) => state.filters)
-
+    const studentData = props.studentData
+    const sortingMethod = props.sortingMethod
+    const filterMethod = props.filterMethod
 
     const unsortedData = getChartData(studentData, filterMethod)
     const chartData = sortData(unsortedData, sortingMethod)
 
     return (
-        <section className="aggregate-chart" style={{display: "flex", flexWrap: "wrap"}}>
+        <section className="evaluation-chart" style={{display: "flex", flexWrap: "wrap"}}>
             <h4>Summarising table chart</h4>
             <VictoryChart 
                 singleQuadrantDomainPadding={{x: false}}
@@ -78,4 +76,4 @@ const AggregateChart = () => {
     )
 }
 
-export default AggregateChart
+export default EvaluationChart

@@ -72,9 +72,9 @@ const processData = async (rawSheetData: any) => {
   return dataSet
 }
 
-const filterStudents = (unfilteredData: StudentEntry[], filterMethod: Filters): StudentEntry[] =>
-  unfilteredData.filter(x => filterMethod.students.includes(x.firstName))
-
+const filterStudents = (unfilteredData: StudentEntry[], filterMethod: Filters): StudentEntry[] => {
+  return unfilteredData.filter(x => filterMethod.students.includes(x.firstName))
+}
   
 const getChartData = (storeData: StudentEntry[], filterMethod: Filters): UnsortedData[] => {
 
@@ -117,7 +117,12 @@ const getChartData = (storeData: StudentEntry[], filterMethod: Filters): Unsorte
   return chartData
 }
 
+
+
+
+
 const getAverage = (values: number[]): number => (values.reduce((total, current) => total + current) / values.length)
+
 
 const sortData = (dataSet: UnsortedData[], sortingMethod: string) => {
   let sortedDataset: UnsortedData[] = []

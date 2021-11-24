@@ -1,4 +1,3 @@
-
 import { useEffect } from 'react';
 import { useAppDispatch } from './app/hooks';
 import Header from './components/Header';
@@ -43,8 +42,8 @@ const App = () => {
             path="/" 
             element={<Home />}
           />
-          <Route 
-            path="/students/:studentname" 
+          <Route  
+            path="/students/:studentname"
             element={<StudentPage />}
           />
           </Routes>

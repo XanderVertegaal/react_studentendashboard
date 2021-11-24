@@ -1,5 +1,6 @@
 import { useParams } from "react-router"
 import { useAppSelector } from "../app/hooks"
+import EvaluationChart from "./EvaluationChart"
 import StudentPageTable from "./StudentPageTable"
 
 const StudentPage = () => {
@@ -16,6 +17,11 @@ const StudentPage = () => {
                 <p>{student.age} years old</p>
                 <p>{student.email}</p>
             </section>
+            {/* <EvaluationChart 
+                studentData={studentData}
+                sortingMethod='curriculum'
+                filterMethod={['difficulty', 'fun']}
+            /> */}
             <section className="student-table-section">
                 <h4>Evaluation scores:</h4>
                 <StudentPageTable studentScores={student.projects}/>
