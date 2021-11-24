@@ -1,4 +1,4 @@
-import { VictoryBar, VictoryChart, VictoryAxis, VictoryTheme, VictoryGroup, VictoryLabel} from 'victory'
+import { VictoryBar, VictoryChart, VictoryAxis, VictoryTheme, VictoryGroup, VictoryLabel, VictoryVoronoiContainer} from 'victory'
 import { getChartData, sortData } from '../utils'
 
 const EvaluationChart = props => {
@@ -7,19 +7,24 @@ const EvaluationChart = props => {
     const sortingMethod = props.sortingMethod
     const filterMethod = props.filterMethod
 
-    console.log('Student data:', studentData)
-    console.log('Sorting method:', sortingMethod)
-    console.log('Filter method', filterMethod)
-
     const unsortedData = getChartData(studentData, filterMethod)
     const chartData = sortData(unsortedData, sortingMethod)
 
     return (
-        <section className="evaluation-chart" style={{display: "flex", flexWrap: "wrap"}}>
+        <section className="evaluation-chart">
             <h4>Summarising table chart</h4>
             <VictoryChart 
                 singleQuadrantDomainPadding={{x: false}}
                 height={200}
+                width={600}
+                containerComponent={<VictoryVoronoiContainer
+                    labels={({datum}) => {
+                        return `${datum.xName}` + 
+                        (filterMethod.parameters.includes('difficulty') ? `\n difficulty: ${datum.diffScore}` : '') + 
+                        (filterMethod.parameters.includes('fun')
+                        ? `\n fun: ${datum.funScore}` : '')
+                    }}
+                    />}
                 theme={VictoryTheme.material} 
                 domainPadding={{'x': [5, 5]}}
             >
