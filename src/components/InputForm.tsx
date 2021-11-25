@@ -83,9 +83,6 @@ const InputForm = (props: any) => {
                 />
                 <label htmlFor="show-difficulty">Difficulty</label><br/>
 
-                <input type="range" name="score" id="show-score" />
-                <label htmlFor="show-score">Score</label><br/>
-
                 <StudentSelector 
                     nameList={nameList} 
                     filterHandler={filterHandler}

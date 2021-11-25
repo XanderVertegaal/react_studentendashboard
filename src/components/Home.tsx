@@ -1,6 +1,7 @@
 import EvaluationChart from "./EvaluationChart"
 import InputForm from "./InputForm"
 import { useAppSelector } from "../app/hooks"
+import AggregateTable from "./AggregateTable"
 
 const Home = () => {
 
@@ -16,6 +17,10 @@ const Home = () => {
                 filterMethod={filterMethod}
             />
             <InputForm 
+                studentData={studentData}
+                filterMethod={filterMethod}
+            />
+            <AggregateTable 
                 studentData={studentData}
                 filterMethod={filterMethod}
             />
