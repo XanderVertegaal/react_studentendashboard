@@ -1,40 +1,62 @@
+import React from 'react'
 import { Filters, StudentEntry } from '../Interfaces'
+import { filterStudents } from '../utils'
 
 type Props = {
     studentData: StudentEntry[];
     filterMethod: Filters
 }
 
-const AggregateTable: React.FC<Props> = props => {
+const AggregateTable: React.FC<Props> = ({studentData, filterMethod}) => {
 
-    // Sorting takes place here.
+    // Copying state in order to modify it. Shallow copy with spread does not work.
+    const deepCopy = []
+    for (let studentEntry of studentData) {
+        let copiedProjects = [...studentEntry.projects]
+        deepCopy.push({...studentEntry, projects: copiedProjects})
+    }
 
-    const assignmentList = props.studentData[0].projects.map(x => x.projectName)
-    const nameList = props.studentData.map(x => x.firstName)
+    // Take only the selected students
+    const filteredData = filterStudents(deepCopy, filterMethod)
+
+    // Take only selected assignments
+    for (let student of filteredData) {
+        student.projects = student.projects.filter(x => filterMethod.assignments.includes(x.projectName))
+    }
+
+    // Set up names and assignments for the table header column/row.
+    // We need to wait for the data to be fetched
+    const nameList = filteredData.map(x => x.firstName)
+    let assignmentList: string[] = []
+    if (filteredData[0] === undefined) {
+        assignmentList = studentData[0].projects.map(x => x.projectName)
+    } else {
+        assignmentList = filteredData[0].projects.map(x => x.projectName)
+    }
 
     const tableHeaders = nameList.map(x => <th key={`${x}-header`} colSpan={2}>{x}</th>)
-
     let secondRow = []
     for (let i=0; i < nameList.length; i++) {
         secondRow.push(
-            <>
-                <th>Diff</th>
-                <th>Fun</th>
-            </>
+            <React.Fragment key={`${i}-wrapper`}>
+                <th key={`${i}-diff`}>Diff</th>
+                <th key={`${i}-fun`}>Fun</th>
+            </React.Fragment>
         )
     }
 
     let tableRows = []
-    let indivScores: any[] = []
+    let indivScores: JSX.Element[] = []
     for (let assignment of assignmentList) {
-        indivScores = props.studentData.map(student => (<>
+        indivScores = filteredData.map(student => (
+        <React.Fragment key={`${student.firstName}-${assignment}-wrapper`}>
             <td key={`${student.firstName}-${assignment}-diffScore`}>{student.projects[assignmentList.indexOf(assignment)].difficultyScore}</td>
-            <td key={`${student.firstName}-${assignment}-funScore`}>{student.projects[assignmentList.indexOf(assignment)].funScore}</td></>
+            <td key={`${student.firstName}-${assignment}-funScore`}>{student.projects[assignmentList.indexOf(assignment)].funScore}</td>
+        </React.Fragment>
         ))
-        
         tableRows.push(
-            <tr>
-                <td>{assignment}</td>
+            <tr key={`row-${assignment}`}>
+                <td key={`header-${assignment}`}>{assignment}</td>
                 {indivScores}
             </tr>
         )
@@ -43,11 +65,11 @@ const AggregateTable: React.FC<Props> = props => {
     return (
     <table className="aggregate-table">
         <thead>
-            <tr>
+            <tr key="first-header-row">
                 <th key='assignments-header'>Assignments</th>
                 {tableHeaders}
             </tr>
-            <tr>
+            <tr key="second-header-row">
                 <th></th>
                 {secondRow}
             </tr>

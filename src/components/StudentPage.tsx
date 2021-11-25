@@ -8,7 +8,6 @@ const StudentPage = () => {
     let myParams = useParams()
     const studentData = useAppSelector(state => state.dataSet)
     const student = studentData.find(x => x.firstName === myParams.studentname)!
-    console.log('Student:', [student])
 
     const studentFilterMethod = {
         students: [student.firstName],

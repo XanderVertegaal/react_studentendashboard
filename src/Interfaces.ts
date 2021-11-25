@@ -5,9 +5,7 @@ export interface StudentEntry {
     age: number;
     image: string;
     email: string;
-    projects: [
-      ProjectEntry
-    ]
+    projects: ProjectEntry[]
   }
   
   export interface ProjectEntry {

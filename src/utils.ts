@@ -80,18 +80,18 @@ const getChartData = (storeData: StudentEntry[], filterMethod: Filters): Unsorte
 
   const filteredStudentData = filterStudents(storeData, filterMethod)
   
-  let aggregatedScores: scoreList[] = []
+  let filteredScores: scoreList[] = []
 
   for (let student of filteredStudentData) {
     for (let assignment of student.projects) {
-      if (filterMethod.assignments.includes(assignment.projectName) && aggregatedScores.some(x => x.assignmentName === assignment.projectName) === false) {
-        aggregatedScores.push({
+      if (filterMethod.assignments.includes(assignment.projectName) && filteredScores.some(x => x.assignmentName === assignment.projectName) === false) {
+        filteredScores.push({
           assignmentName: assignment.projectName,
           diffScores: [assignment.difficultyScore],
           funScores: [assignment.funScore]
         })  
       } else if (filterMethod.assignments.includes(assignment.projectName)) {
-        let existEntry = aggregatedScores.find(x => x.assignmentName === assignment.projectName)
+        let existEntry = filteredScores.find(x => x.assignmentName === assignment.projectName)
         existEntry?.diffScores.push(assignment.difficultyScore)
         existEntry?.funScores.push(assignment.funScore)
       }
@@ -102,7 +102,7 @@ const getChartData = (storeData: StudentEntry[], filterMethod: Filters): Unsorte
   let chartData: UnsortedData[] = []
 
   let newId : number = 1
-  for (let item of aggregatedScores) {
+  for (let item of filteredScores) {
     let averageDiffScore: number = getAverage(item.diffScores)
     let averageFunScore: number = getAverage(item.funScores)
     chartData.push({
@@ -142,18 +142,18 @@ const sortData = (dataSet: UnsortedData[], sortingMethod: string) => {
   return sortedDataset
 }
 
-const setFilteredState = (currentFilters: Filters, type: string, name: string, value: boolean) => {
+const setFilteredState = (currentFilters: Filters, filterType: string, filterValue: string, shouldBeAdded: boolean) => {
   let copiedFilter: Filters = {
     parameters: [...currentFilters.parameters],
     students: [...currentFilters.students],
     assignments: [...currentFilters.assignments]
   }
-  if (value === true) {
-    copiedFilter[type as keyof Filters].push(name)
+  if (shouldBeAdded === true) {
+    copiedFilter[filterType as keyof Filters].push(filterValue)
   } else {
-    copiedFilter[type as keyof Filters] = copiedFilter[type as keyof Filters].filter(item => item !== name)
+    copiedFilter[filterType as keyof Filters] = copiedFilter[filterType as keyof Filters].filter(item => item !== filterValue)
   }
   return copiedFilter
 }
 
-export { getSheetData, processData, getChartData, sortData, setFilteredState }
+export { getSheetData, processData, getChartData, sortData, setFilteredState, filterStudents }
