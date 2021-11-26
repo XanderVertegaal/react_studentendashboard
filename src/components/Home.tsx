@@ -11,13 +11,13 @@ const Home = () => {
 
     return (
         <article className="home">
+            <InputForm 
+                studentData={studentData}
+                filterMethod={filterMethod}
+            />
             <EvaluationChart 
                 studentData={studentData}
                 sortingMethod={sortingMethod}
-                filterMethod={filterMethod}
-            />
-            <InputForm 
-                studentData={studentData}
                 filterMethod={filterMethod}
             />
             <AggregateTable 

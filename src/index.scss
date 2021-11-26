@@ -1,3 +1,8 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;1,400&display=swap");
+
+$main-color: #474d74;
+$border-radius-value: 15px;
+
 * {
   padding: 0;
   margin: 0;
@@ -6,26 +11,29 @@
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: "Montserrat", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 
+// Header
 .top-header {
-  background: pink;
+  background: $main-color;
+
+  h1 {
+    font-family: "Montserrat", sans-serif;
+    text-align: center;
+    color: white;
+    padding: 2em;
+  }
 }
 
-h1 {
-  text-align: center;
-}
-
+// Main page
 main {
   display: flex;
   flex-direction: row;
@@ -35,13 +43,67 @@ ul {
   list-style-type: none;
 }
 
-[type="radio"] {
+// Side navigation bar
+
+.sidebar {
+  padding: 2em;
+
+  .sidebar-wrapper {
+    border: 2px $main-color solid;
+    border-radius: $border-radius-value;
+    background-color: lightcyan;
+  }
+
+  h4 {
+    padding: 0.5em 0.8em;
+    background-color: $main-color;
+    color: white;
+    border-top-left-radius: $border-radius-value;
+    border-top-right-radius: $border-radius-value;
+  }
+
+  a {
+    text-decoration: none;
+    color: $main-color;
+  }
+
+  li {
+    margin: 0.5em 0 0.5em;
+    text-align: center;
+
+    &:hover {
+      font-weight: bold;
+    }
+  }
+}
+
+// Input form
+
+fieldset {
   padding: 1em;
+  margin-bottom: 2em;
+  border: 1px solid $main-color;
 }
 
 legend {
-  background-color: black;
-  color: white;
-  padding: .1em;
-  border-radius: 5pt;
+  border: 2px solid $main-color;
+  color: $main-color;
+  padding: 0.1em 0.5em;
+  border-radius: $border-radius-value;
+}
+
+.input-form {
+  display: flex;
+  flex-direction: column;
+  padding: 2em 2em 2em 0;
+
+  .filter-list-wrapper {
+    display: flex;
+    padding: 0.5em 0;
+  }
+
+  .filter-list-item {
+    display: inline-block;
+    padding: 0 1em;
+  }
 }

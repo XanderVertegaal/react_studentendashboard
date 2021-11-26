@@ -13,26 +13,26 @@ const StudentSelector: React.FC<Props> = ({nameList, filterHandler, currentFilte
     
     let studentItems = nameList.map((name: any) => {
         return (
-            <li key={`chk-${name}`} >
+            <li key={`chk-${name}`} className="filter-list-item" >
                 <input 
                     type="checkbox" 
                     id={`show-student-${name}`} 
                     value={name}
                     onChange={filterHandler}
                     checked={currentFilters.students.includes(name)}
-                />
-                        <FontAwesomeIcon icon={faUserGraduate} />
-                <label htmlFor={`show-student-${name}`}>{name}</label>
+                /> 
+                <FontAwesomeIcon icon={faUserGraduate} /> 
+                <label htmlFor={`show-student-${name}`}> {name} </label>
             </li>)
     })
     
     return (
-        <>
+        <div className="filter-list-wrapper">
             <h4>Students:</h4>
-            <ul>
+            <ul className="input-student-list">
                 {studentItems}
             </ul>
-        </>
+        </div>
     )
 
 }

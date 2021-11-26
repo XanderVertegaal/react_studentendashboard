@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;1,400&display=swap");
 * {
   padding: 0;
   margin: 0;
@@ -7,21 +8,24 @@
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  font-family: "Montserrat", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 
 .top-header {
-  background: pink;
+  background: #474d74;
 }
 
-h1 {
+.top-header h1 {
+  font-family: "Montserrat", sans-serif;
   text-align: center;
+  color: white;
+  padding: 2em;
 }
 
 main {
@@ -38,14 +42,71 @@ ul {
   list-style-type: none;
 }
 
-[type="radio"] {
+.sidebar {
+  padding: 2em;
+}
+
+.sidebar .sidebar-wrapper {
+  border: 2px #474d74 solid;
+  border-radius: 15px;
+  background-color: lightcyan;
+}
+
+.sidebar h4 {
+  padding: 0.5em 0.8em;
+  background-color: #474d74;
+  color: white;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
+.sidebar a {
+  text-decoration: none;
+  color: #474d74;
+}
+
+.sidebar li {
+  margin: 0.5em 0 0.5em;
+  text-align: center;
+}
+
+.sidebar li:hover {
+  font-weight: bold;
+}
+
+fieldset {
   padding: 1em;
+  margin-bottom: 2em;
+  border: 1px solid #474d74;
 }
 
 legend {
-  background-color: black;
-  color: white;
-  padding: .1em;
-  border-radius: 5pt;
+  border: 2px solid #474d74;
+  color: #474d74;
+  padding: 0.1em 0.5em;
+  border-radius: 15px;
+}
+
+.input-form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 2em 2em 2em 0;
+}
+
+.input-form .filter-list-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 0.5em 0;
+}
+
+.input-form .filter-list-item {
+  display: inline-block;
+  padding: 0 1em;
 }
 /*# sourceMappingURL=index.css.map */

@@ -46,42 +46,50 @@ const InputForm = (props: any) => {
     } 
 
     return (
-        <form>
-            <fieldset>
+        <form className="input-form">
+            <fieldset className="sorting-options">
                 <legend>Sort by:</legend>
                 <div className="radio-wrapper">
                     <input type="radio" id="sort-curriculum" name="sort" value="curriculum" onChange={sortHandler} defaultChecked></input>
-                    <label htmlFor="sort-curriculum">Curriculum order</label><br/>
+                    <label htmlFor="sort-curriculum"> Curriculum order</label><br/>
 
                     <input type="radio" id="sort-difficulty" name="sort" value="difficulty" onChange={sortHandler}></input>
-                    <label htmlFor="sort-difficulty">Difficulty</label><br/>
+                    <label htmlFor="sort-difficulty"> Difficulty</label><br/>
 
                     <input type="radio" id="sort-fun" name="sort" value="fun" onChange={sortHandler}></input>
-                    <label htmlFor="sort-fun">Fun</label><br/>
+                    <label htmlFor="sort-fun"> Fun</label><br/>
                 </div>
             </fieldset>
 
-            <fieldset>
+            <fieldset className="filter-options">
                 <legend>Show only:</legend>
-                <input 
-                    type="checkbox" 
-                    name="fun" 
-                    id="show-parameter-fun" 
-                    onChange={filterHandler} 
-                    value='fun' 
-                    checked={filterMethod.parameters.includes('fun')}
-                />
-                <label htmlFor="show-fun">Fun</label><br/>
-
-                <input 
-                    type="checkbox" 
-                    name="difficulty" 
-                    id="show-parameter-difficulty" 
-                    onChange={filterHandler} 
-                    value='difficulty' 
-                    checked={filterMethod.parameters.includes('difficulty')} 
-                />
-                <label htmlFor="show-difficulty">Difficulty</label><br/>
+                <div className="filter-list-wrapper">
+                <h4>Parameters:</h4>
+                <ul className="filter-list">
+                    <li className="filter-list-item">
+                        <input 
+                            type="checkbox" 
+                            name="fun" 
+                            id="show-parameter-fun" 
+                            onChange={filterHandler} 
+                            value='fun' 
+                            checked={filterMethod.parameters.includes('fun')}
+                        />
+                        <label htmlFor="show-fun"> Fun</label>
+                    </li>
+                    <li className="filter-list-item">
+                        <input 
+                            type="checkbox"
+                            name="difficulty" 
+                            id="show-parameter-difficulty" 
+                            onChange={filterHandler} 
+                            value='difficulty' 
+                            checked={filterMethod.parameters.includes('difficulty')} 
+                        />
+                        <label htmlFor="show-difficulty"> Difficulty</label>
+                    </li>
+                </ul>
+                </div>
 
                 <StudentSelector 
                     nameList={nameList} 

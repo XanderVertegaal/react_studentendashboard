@@ -13,7 +13,7 @@ const AssignmentSelector: React.FC<Props> = ({assignmentList, filterHandler, cur
 
     let assignmentItems = assignmentList.map((assignment: any) => {
         return (
-            <li key={`chk-${assignment}`} >
+            <li key={`chk-${assignment}`} className="filter-list-item">
                 <input 
                     type="checkbox" 
                     id={`show-assignment-${assignment}`} 
@@ -28,12 +28,12 @@ const AssignmentSelector: React.FC<Props> = ({assignmentList, filterHandler, cur
     })
     
     return (
-        <>
+        <div className="filter-list-wrapper">
             <h4>Assignments:</h4>
             <ul>
                 {assignmentItems}
             </ul>
-        </>
+        </div>
     )
 
 }

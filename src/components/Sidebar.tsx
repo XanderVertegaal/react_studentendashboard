@@ -7,23 +7,29 @@ const Sidebar = () => {
 
     const StudentLinkItems = storeData.map(x => {
         return (
-            <li key={`li-${x.firstName}`}>
-                <Link to={`students/${x.firstName}`}>
-                    {x.firstName}
-                </Link>
-            </li>
+            <>
+            <hr/>
+                <li key={`li-${x.firstName}`}>
+                    <Link to={`students/${x.firstName}`}>
+                        {x.firstName}
+                    </Link>
+                    
+                </li>
+            </>
         )
     })
 
 
     return (
         <nav className="sidebar">
+            <div className="sidebar-wrapper">
                 <Link to={'/'}>
-                    <h4>Back to homepage</h4>
+                    <h4 className="sidebar-home">Homepage</h4>
                 </Link>
-            <ul>
-                {StudentLinkItems}
-            </ul>
+                <ul>
+                    {StudentLinkItems}
+                </ul>
+            </div>
         </nav>
     )
 }
