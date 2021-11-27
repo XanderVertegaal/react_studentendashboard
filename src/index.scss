@@ -160,8 +160,39 @@ legend {
 
 .student-table-section {
   grid-area: 3 / 1 / 3 / 3;
-  border: 1px solid blue;
+  margin-top: 3em;
   justify-self: center;
+  display: flex;
+  flex-direction: column;
+
+  .student-table-header {
+    color: $main-color;
+    text-align: center;
+    border: 3px solid $main-color;
+    display: inline;
+    align-self: center;
+    border-radius: $border-radius-value;
+    padding: .5em 1em;
+  }
+
+  th {
+    color: $main-color;
+    padding: .2em .5em;
+  }
+
+  table {
+    border-collapse: collapse;
+  }
+
+  tr:nth-child(even) {
+    background-color: lavender;
+  }
+
+  td {
+    padding: .2em .5em;
+  }
+
+
 }
 
 // Chart 

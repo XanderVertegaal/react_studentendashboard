@@ -38,7 +38,7 @@ const StudentPage = () => {
                     filterMethod={studentFilterMethod}
                 />
                 <section className="student-table-section">
-                    <h4>Evaluation scores:</h4>
+                    <h4 className="student-table-header">Individual evaluation scores:</h4>
                     <StudentPageTable studentScores={student.projects}/>
                 </section>
             {/* </article> */}

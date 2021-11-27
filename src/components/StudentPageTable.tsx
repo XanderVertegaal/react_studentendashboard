@@ -19,7 +19,7 @@ const StudentTable: React.FC<Props> = ({studentScores}) => {
     return (
         <table className="student-table">
             <thead>
-                <tr>
+                <tr className="header-row">
                     <th>Exercise</th>
                     <th>Difficulty</th>
                     <th>Fun</th>
