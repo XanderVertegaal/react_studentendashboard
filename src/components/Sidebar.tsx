@@ -1,5 +1,6 @@
 import { useAppSelector } from "../app/hooks";
 import { Link } from "react-router-dom";
+import React from "react";
 
 const Sidebar = () => {
 
@@ -7,7 +8,7 @@ const Sidebar = () => {
 
     const StudentLinkItems = storeData.map(x => {
         return (
-            <>
+            <React.Fragment key={x.firstName}>
             <hr/>
                 <li key={`li-${x.firstName}`}>
                     <Link to={`students/${x.firstName}`}>
@@ -15,7 +16,7 @@ const Sidebar = () => {
                     </Link>
                     
                 </li>
-            </>
+            </React.Fragment>
         )
     })
 

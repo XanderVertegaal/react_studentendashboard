@@ -35,19 +35,19 @@ const App = () => {
       <>
         <Header />
         <Router>
-        <main>
-        <Sidebar />
-          <Routes>
-          <Route 
-            path="/" 
-            element={<Home />}
-          />
-          <Route  
-            path="/students/:studentname"
-            element={<StudentPage />}
-          />
-          </Routes>
-        </main>
+          <main>
+            <Sidebar />
+              <Routes>
+              <Route 
+                path="/" 
+                element={<Home />}
+              />
+              <Route  
+                path="/students/:studentname"
+                element={<StudentPage />}
+              />
+              </Routes>
+          </main>
         </Router>
       </>
     );

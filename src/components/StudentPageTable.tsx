@@ -6,8 +6,6 @@ type Props = {
 
 const StudentTable: React.FC<Props> = ({studentScores}) => {
 
-    console.log('Student scores:', studentScores)
-    
     const studentRows = studentScores.map(entry => {
         return (
             <tr key={entry.projectName}>

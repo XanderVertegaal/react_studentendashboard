@@ -12,7 +12,7 @@ const EvaluationChart = props => {
 
     return (
         <section className="evaluation-chart">
-            <h4>Summarising table chart</h4>
+            <h4 className="chart-header">Summarising table chart</h4>
             <VictoryChart 
                 singleQuadrantDomainPadding={{x: false}}
                 height={200}
