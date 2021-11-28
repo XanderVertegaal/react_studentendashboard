@@ -10,7 +10,7 @@ const Home = () => {
     const filterMethod = useAppSelector((state) => state.filters)
 
     return (
-        <article className="home">
+        <>
             <InputForm 
                 studentData={studentData}
                 filterMethod={filterMethod}
@@ -24,7 +24,7 @@ const Home = () => {
                 studentData={studentData}
                 filterMethod={filterMethod}
             />
-        </article>
+        </>
     )
 }
 

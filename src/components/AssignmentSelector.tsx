@@ -22,7 +22,7 @@ const AssignmentSelector: React.FC<Props> = ({assignmentList, filterHandler, cur
                     onChange={filterHandler}
                     checked={currentFilters.assignments.includes(assignment)}
                 />
-                <FontAwesomeIcon icon={faBookOpen} />
+                <FontAwesomeIcon icon={faBookOpen} className="icon"/>
                 <label htmlFor={`show-assignment-${assignment}`}>{assignment}</label>
             </li>)
     })
@@ -30,9 +30,11 @@ const AssignmentSelector: React.FC<Props> = ({assignmentList, filterHandler, cur
     return (
         <div className="filter-list-wrapper">
             <h4>Assignments:</h4>
+            {(assignmentList[0] === '' ? <h4> Loading... </h4> :
             <ul>
                 {assignmentItems}
             </ul>
+            )}
         </div>
     )
 

@@ -1,18 +1,23 @@
 import StudentSelector from "./StudentSelector"
 import { useAppDispatch } from "../app/hooks"
 import AssignmentSelector from "./AssignmentSelector"
-import { ChangeEvent } from "react"
+import React, { ChangeEvent } from "react"
 import { setSortCurriculum, setSortDifficulty, setSortFun } from "../actions/setSortMethod"
 import { setFilter } from "../actions/setFilter"
 import { setFilteredState } from "../utils"
 import { Filters, StudentEntry } from "../Interfaces"
 
-const InputForm = (props: any) => {
+type Props = {
+    studentData: StudentEntry[];
+    filterMethod: Filters
+}
+
+const InputForm: React.FC<Props> = props => {
     const dispatch = useAppDispatch();
     const studentData: StudentEntry[] = props.studentData
     const filterMethod: Filters = props.filterMethod
     
-    const nameList = studentData.map(x => x.firstName) ;
+    const nameList = studentData.map(x => x.firstName);
     const assignmentList = studentData[0].projects.map(x => x.projectName);
 
     const sortHandler = (event: ChangeEvent<HTMLInputElement>) => {
@@ -96,6 +101,7 @@ const InputForm = (props: any) => {
                     filterHandler={filterHandler}
                     currentFilters={filterMethod}
                 />
+                
                 <AssignmentSelector 
                     assignmentList={assignmentList}
                     filterHandler={filterHandler}
