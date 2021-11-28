@@ -12,14 +12,17 @@ const EvaluationChart = props => {
 
     return (
         <section className="evaluation-chart">
-            <h4 className="chart-header">Summarising table chart</h4>
+            <h4 className="chart-header">Evaluation results</h4>
             <VictoryChart 
                 padding={{top: 20, bottom: 100, left: 20, right: 50}}
                 singleQuadrantDomainPadding={{x: false}}
                 height={200}
                 width={600}
                 containerComponent={<VictoryVoronoiContainer
-                    labelComponent={<VictoryTooltip constrainToVisibleArea />}
+                    labelComponent={<VictoryTooltip 
+                        constrainToVisibleArea
+                        style={{ fontSize: 10 }}
+                    />}
                     labels={({datum}) => {
                         return `${datum.xName}` + 
                         (filterMethod.parameters.includes('difficulty') ? `\n difficulty: ${datum.diffScore}` : '') + 
@@ -37,8 +40,8 @@ const EvaluationChart = props => {
                     orientation="horizontal"
                     style={{title: {fontSize: 5}}}
                     data={[
-                        { name: 'Fun score', symbol: { fill: 'red' }},
-                        { name: 'Difficulty score', symbol: { fill: 'green'}}
+                        { name: 'Fun score', symbol: { fill: 'red' }, labels: { fontSize: 8}},
+                        { name: 'Difficulty score', symbol: { fill: 'green'}, labels: { fontSize: 8}}
                     ]}
                 />
                 <VictoryAxis    // x axis

@@ -118,20 +118,29 @@ legend {
 }
 
 .icon {
-  margin: 0 .25em;
+  margin: 0 0.25em;
 }
 
 table {
   border-collapse: collapse;
+  margin-bottom: 2em;
 }
 
 th {
   color: #474d74;
-  padding: .2em .5em;
+  padding: 0.2em 0.5em;
 }
 
 td {
-  padding: .2em .5em;
+  padding: 0.2em 0.5em;
+}
+
+thead tr:first-child {
+  border-top: 2px solid #474d74;
+}
+
+thead tr:last-child {
+  border-bottom: 1px solid #474d74;
 }
 
 tbody tr:nth-child(even) {
@@ -142,12 +151,9 @@ tbody tr:last-child {
   border-bottom: 2px solid #474d74;
 }
 
-thead tr:first-child {
-  border-top: 2px solid #474d74;
-}
-
-thead tr:last-child {
-  border-bottom: 1px solid #474d74;
+tbody tr td:first-child {
+  font-weight: bold;
+  color: #474d74;
 }
 
 .table-section {
@@ -179,7 +185,8 @@ thead tr:last-child {
       -ms-grid-row-align: center;
       align-self: center;
   border-radius: 15px;
-  padding: .5em 1em;
+  padding: 0.5em 1em;
+  margin-bottom: 1em;
 }
 
 .student-card {
@@ -232,7 +239,7 @@ thead tr:last-child {
 }
 
 .evaluation-chart {
-  border: 1px solid red;
+  margin-top: 1em;
   -ms-grid-column: 1;
   -ms-grid-column-span: 2;
   grid-column: 1 / span 2;
@@ -255,6 +262,6 @@ thead tr:last-child {
   border: 3px solid #474d74;
   display: inline;
   border-radius: 15px;
-  padding: .5em 1em;
+  padding: 0.5em 1em;
 }
 /*# sourceMappingURL=index.css.map */

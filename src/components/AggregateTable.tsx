@@ -65,7 +65,7 @@ const AggregateTable: React.FC<Props> = ({studentData, filterMethod}) => {
 
     return (
         <section className="table-section">
-            <h4 className="table-header">Aggregated results table</h4>
+            <h4 className="table-header">Aggregated evaluation scores</h4>
             <table className="aggregate-table">
                 <thead>
                     <tr key="first-header-row">

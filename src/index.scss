@@ -46,7 +46,6 @@ ul {
 // Side navigation bar
 
 .sidebar {
-  
   grid-column: 1 / span 1;
   padding: 2em;
   width: 15em;
@@ -82,7 +81,6 @@ ul {
   }
 }
 
-
 // Home
 
 // Input form
@@ -115,33 +113,25 @@ legend {
     display: inline-block;
     padding: 0 1em;
   }
-
 }
 
 .icon {
-  margin: 0 .25em;
+  margin: 0 0.25em;
 }
 
 // Tables
 table {
   border-collapse: collapse;
+  margin-bottom: 2em;
 }
 
 th {
   color: $main-color;
-  padding: .2em .5em;
+  padding: 0.2em 0.5em;
 }
 
 td {
-  padding: .2em .5em;
-}
-
-tbody tr:nth-child(even) {
-  background-color: lavender;
-}
-
-tbody tr:last-child {
-  border-bottom: 2px solid $main-color
+  padding: 0.2em 0.5em;
 }
 
 thead tr:first-child {
@@ -149,7 +139,20 @@ thead tr:first-child {
 }
 
 thead tr:last-child {
-  border-bottom: 1px solid $main-color
+  border-bottom: 1px solid $main-color;
+}
+
+tbody tr:nth-child(even) {
+  background-color: lavender;
+}
+
+tbody tr:last-child {
+  border-bottom: 2px solid $main-color;
+}
+
+tbody tr td:first-child {
+  font-weight: bold;
+  color: $main-color;
 }
 
 .table-section {
@@ -160,18 +163,19 @@ thead tr:last-child {
   flex-direction: column;
 }
 
- .aggregate-table {
-   margin: 1em;
- }
+.aggregate-table {
+  margin: 1em;
+}
 
- .table-header {
+.table-header {
   color: $main-color;
   text-align: center;
   border: 3px solid $main-color;
   display: inline;
   align-self: center;
   border-radius: $border-radius-value;
-  padding: .5em 1em;
+  padding: 0.5em 1em;
+  margin-bottom: 1em;
 }
 
 // Student page
@@ -186,7 +190,7 @@ thead tr:last-child {
   border-radius: $border-radius-value;
   border: 2px solid $main-color;
   background-color: $main-color;
-  
+
   .student-image {
     border-radius: 50%;
     border: 5px solid white;
@@ -216,9 +220,9 @@ thead tr:last-child {
   }
 }
 
-// Chart 
+// Chart
 .evaluation-chart {
-  border: 1px solid red;
+  margin-top: 1em;
   grid-column: 1 / span 2;
   justify-self: stretch;
   display: flex;
@@ -232,6 +236,5 @@ thead tr:last-child {
   border: 3px solid $main-color;
   display: inline;
   border-radius: $border-radius-value;
-  padding: .5em 1em;
-
+  padding: 0.5em 1em;
 }
