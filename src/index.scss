@@ -122,10 +122,57 @@ legend {
   margin: 0 .25em;
 }
 
-// Home page table
+// Tables
+table {
+  border-collapse: collapse;
+}
+
+th {
+  color: $main-color;
+  padding: .2em .5em;
+}
+
+td {
+  padding: .2em .5em;
+}
+
+tbody tr:nth-child(even) {
+  background-color: lavender;
+}
+
+tbody tr:last-child {
+  border-bottom: 2px solid $main-color
+}
+
+thead tr:first-child {
+  border-top: 2px solid $main-color;
+}
+
+thead tr:last-child {
+  border-bottom: 1px solid $main-color
+}
+
+.table-section {
+  grid-area: 3 / 1 / 3 / 3;
+  margin-top: 3em;
+  justify-self: center;
+  display: flex;
+  flex-direction: column;
+}
+
  .aggregate-table {
-   grid-column: 1 / span 2;
+   margin: 1em;
  }
+
+ .table-header {
+  color: $main-color;
+  text-align: center;
+  border: 3px solid $main-color;
+  display: inline;
+  align-self: center;
+  border-radius: $border-radius-value;
+  padding: .5em 1em;
+}
 
 // Student page
 .student-card {
@@ -167,44 +214,6 @@ legend {
     border-bottom-right-radius: $border-radius-value;
     padding-bottom: 1em;
   }
-
-}
-
-.student-table-section {
-  grid-area: 3 / 1 / 3 / 3;
-  margin-top: 3em;
-  justify-self: center;
-  display: flex;
-  flex-direction: column;
-
-  .student-table-header {
-    color: $main-color;
-    text-align: center;
-    border: 3px solid $main-color;
-    display: inline;
-    align-self: center;
-    border-radius: $border-radius-value;
-    padding: .5em 1em;
-  }
-
-  th {
-    color: $main-color;
-    padding: .2em .5em;
-  }
-
-  table {
-    border-collapse: collapse;
-  }
-
-  tr:nth-child(even) {
-    background-color: lavender;
-  }
-
-  td {
-    padding: .2em .5em;
-  }
-
-
 }
 
 // Chart 

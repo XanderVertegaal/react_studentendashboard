@@ -47,6 +47,7 @@ const AggregateTable: React.FC<Props> = ({studentData, filterMethod}) => {
 
     let tableRows = []
     let indivScores: JSX.Element[] = []
+
     for (let assignment of assignmentList) {
         indivScores = filteredData.map(student => (
         <React.Fragment key={`${student.firstName}-${assignment}-wrapper`}>
@@ -63,21 +64,24 @@ const AggregateTable: React.FC<Props> = ({studentData, filterMethod}) => {
         }
 
     return (
-    <table className="aggregate-table">
-        <thead>
-            <tr key="first-header-row">
-                <th key='assignments-header'>Assignments</th>
-                {tableHeaders}
-            </tr>
-            <tr key="second-header-row">
-                <th></th>
-                {secondRow}
-            </tr>
-        </thead>
-        <tbody>
-            {tableRows}
-        </tbody>
-    </table>
+        <section className="table-section">
+            <h4 className="table-header">Aggregated results table</h4>
+            <table className="aggregate-table">
+                <thead>
+                    <tr key="first-header-row">
+                        <th key='assignments-header'>Assignments</th>
+                        {tableHeaders}
+                    </tr>
+                    <tr key="second-header-row">
+                        <th></th>
+                        {secondRow}
+                    </tr>
+                </thead>
+                <tbody>
+                    {tableRows}
+                </tbody>
+            </table>
+        </section>
     )
 }
 

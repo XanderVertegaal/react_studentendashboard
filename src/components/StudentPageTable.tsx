@@ -17,18 +17,21 @@ const StudentTable: React.FC<Props> = ({studentScores}) => {
     })
 
     return (
-        <table className="student-table">
-            <thead>
-                <tr className="header-row">
-                    <th>Exercise</th>
-                    <th>Difficulty</th>
-                    <th>Fun</th>
-                </tr>
-            </thead>
-            <tbody>
-                {studentRows}
-            </tbody>
-        </table>
+        <section className="table-section">
+            <h4 className="table-header">Individual evaluation scores:</h4>
+            <table className="student-table">
+                <thead>
+                    <tr className="header-row">
+                        <th>Exercise</th>
+                        <th>Difficulty</th>
+                        <th>Fun</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {studentRows}
+                </tbody>
+            </table>
+        </section>
     )
 }
 

@@ -24,7 +24,6 @@ const StudentPage = () => {
     
 
         return (
-            // <article className='student-page'>
             <>
                 <section className='student-card'>
                     <img className='student-image' src={student.image} alt={`${student.firstName}${student.lastName}`} />
@@ -37,11 +36,7 @@ const StudentPage = () => {
                     sortingMethod='curriculum'
                     filterMethod={studentFilterMethod}
                 />
-                <section className="student-table-section">
-                    <h4 className="student-table-header">Individual evaluation scores:</h4>
-                    <StudentPageTable studentScores={student.projects}/>
-                </section>
-            {/* </article> */}
+                <StudentPageTable studentScores={student.projects}/>
             </>
         )
     }
