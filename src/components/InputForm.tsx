@@ -12,10 +12,8 @@ type Props = {
     filterMethod: Filters
 }
 
-const InputForm: React.FC<Props> = props => {
+const InputForm: React.FC<Props> = ({studentData, filterMethod}) => {
     const dispatch = useAppDispatch();
-    const studentData: StudentEntry[] = props.studentData
-    const filterMethod: Filters = props.filterMethod
     
     const nameList = studentData.map(x => x.firstName);
     const assignmentList = studentData[0].projects.map(x => x.projectName);

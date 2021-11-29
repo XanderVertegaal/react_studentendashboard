@@ -18,20 +18,22 @@ const EvaluationChart = props => {
                 singleQuadrantDomainPadding={{x: false}}
                 height={200}
                 width={600}
-                containerComponent={<VictoryVoronoiContainer
-                    labelComponent={<VictoryTooltip 
-                        constrainToVisibleArea
-                        style={{ fontSize: 10 }}
-                    />}
-                    labels={({datum}) => {
-                        return `${datum.xName}` + 
-                        (filterMethod.parameters.includes('difficulty') ? `\n difficulty: ${datum.diffScore}` : '') + 
-                        (filterMethod.parameters.includes('fun')
-                        ? `\n fun: ${datum.funScore}` : '')
-                    }}
-                    />}
                 theme={VictoryTheme.material} 
                 domainPadding={{'x': [5, 5]}}
+                containerComponent={
+                    <VictoryVoronoiContainer
+                        labelComponent={
+                            <VictoryTooltip 
+                                constrainToVisibleArea
+                                style={{ fontSize: 10 }}
+                            />}
+                        labels={({datum}) => {
+                            return `${datum.xName}` + 
+                            (filterMethod.parameters.includes('difficulty') ? `\n difficulty: ${datum.diffScore}` : '') + 
+                            (filterMethod.parameters.includes('fun') ? `\n fun: ${datum.funScore}` : '')
+                        }}
+                    />
+                }
             >
                 <VictoryLegend 
                     x={20}
@@ -45,29 +47,13 @@ const EvaluationChart = props => {
                     ]}
                 />
                 <VictoryAxis    // x axis
-                    style={
-                        {
-                            tickLabels: {
-                                angle: 60,
-                                fontSize: 6,
-                                textAnchor: 'start',
-                                
-                            }
-                        }
-                    }
+                    style={ { tickLabels: { angle: 60, fontSize: 6, textAnchor: 'start' } } }
                     tickLabelComponent={<VictoryLabel dx={-6} dy={-8}/>}
                 />
                 <VictoryAxis    // y axis
                     dependentAxis
                     tickValues={[1,2,3,4,5]}
-                    style={
-                        {
-                            axisLabel: {padding: 30},
-                            tickLabels: {
-                                fontSize: 5
-                            }
-                        }
-                    }
+                    style={ { axisLabel: {padding: 30}, tickLabels: { fontSize: 5 } } }
                 />
                 <VictoryGroup 
                     offset={2} 

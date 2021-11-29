@@ -1,8 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;1,400&display=swap");
 
 $main-color: #474d74;
+$sec-color: lavender;
 $border-radius-value: 15px;
 
+// General styles
 * {
   padding: 0;
   margin: 0;
@@ -21,6 +23,15 @@ code {
     monospace;
 }
 
+main {
+  display: grid;
+  grid-template: 200px, 1fr / repeat(auto, 1fr);
+}
+
+ul {
+  list-style-type: none;
+}
+
 // Header
 .top-header {
   background: $main-color;
@@ -33,18 +44,8 @@ code {
   }
 }
 
-// General styles
-main {
-  display: grid;
-  grid-template: 200px, 1fr / repeat(auto, 1fr);
-}
 
-ul {
-  list-style-type: none;
-}
-
-// Side navigation bar
-
+// Sidebar
 .sidebar {
   grid-column: 1 / span 1;
   padding: 2em;
@@ -56,13 +57,18 @@ ul {
     background-color: lightcyan;
   }
 
-  h4 {
+  .sidebar-home {
     text-align: center;
     padding: 0.5em 0.8em;
     background-color: $main-color;
     color: white;
     border-top-left-radius: $border-radius-value;
     border-top-right-radius: $border-radius-value;
+
+    &:hover {
+      background-color: $sec-color;
+      color: $main-color
+    }
   }
 
   a {
@@ -81,10 +87,9 @@ ul {
   }
 }
 
-// Home
+
 
 // Input form
-
 fieldset {
   padding: 1em;
   margin-bottom: 2em;
@@ -143,7 +148,7 @@ thead tr:last-child {
 }
 
 tbody tr:nth-child(even) {
-  background-color: lavender;
+  background-color: $sec-color;
 }
 
 tbody tr:last-child {

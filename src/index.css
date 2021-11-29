@@ -17,17 +17,6 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 
-.top-header {
-  background: #474d74;
-}
-
-.top-header h1 {
-  font-family: "Montserrat", sans-serif;
-  text-align: center;
-  color: white;
-  padding: 2em;
-}
-
 main {
   display: -ms-grid;
   display: grid;
@@ -38,6 +27,17 @@ main {
 
 ul {
   list-style-type: none;
+}
+
+.top-header {
+  background: #474d74;
+}
+
+.top-header h1 {
+  font-family: "Montserrat", sans-serif;
+  text-align: center;
+  color: white;
+  padding: 2em;
 }
 
 .sidebar {
@@ -54,13 +54,18 @@ ul {
   background-color: lightcyan;
 }
 
-.sidebar h4 {
+.sidebar .sidebar-home {
   text-align: center;
   padding: 0.5em 0.8em;
   background-color: #474d74;
   color: white;
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
+}
+
+.sidebar .sidebar-home:hover {
+  background-color: lavender;
+  color: #474d74;
 }
 
 .sidebar a {

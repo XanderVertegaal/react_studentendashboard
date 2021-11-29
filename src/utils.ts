@@ -72,14 +72,12 @@ const processData = async (rawSheetData: any) => {
   return dataSet
 }
 
-const filterStudents = (unfilteredData: StudentEntry[], filterMethod: Filters): StudentEntry[] => {
-  return unfilteredData.filter(x => filterMethod.students.includes(x.firstName))
-}
+const filterStudents = (unfilteredData: StudentEntry[], filterMethod: Filters): StudentEntry[] => 
+  unfilteredData.filter(x => filterMethod.students.includes(x.firstName))
+
   
 const getChartData = (storeData: StudentEntry[], filterMethod: Filters): UnsortedData[] => {
-
   const filteredStudentData = filterStudents(storeData, filterMethod)
-  
   let filteredScores: scoreList[] = []
 
   for (let student of filteredStudentData) {
@@ -98,9 +96,8 @@ const getChartData = (storeData: StudentEntry[], filterMethod: Filters): Unsorte
     }  
   }
 
-  // Calculate average
+  // Calculate average scores
   let chartData: UnsortedData[] = []
-
   let newId : number = 1
   for (let item of filteredScores) {
     let averageDiffScore: number = getAverage(item.diffScores)
@@ -121,7 +118,8 @@ const getChartData = (storeData: StudentEntry[], filterMethod: Filters): Unsorte
 
 
 
-const getAverage = (values: number[]): number => (values.reduce((total, current) => total + current) / values.length)
+const getAverage = (values: number[]): number => 
+  values.reduce((total, current) => total + current) / values.length
 
 
 const sortData = (dataSet: UnsortedData[], sortingMethod: string) => {

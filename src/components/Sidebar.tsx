@@ -3,9 +3,7 @@ import { Link } from "react-router-dom";
 import React from "react";
 
 const Sidebar = () => {
-
     const storeData = useAppSelector(state => state.dataSet)
-
     const StudentLinkItems = storeData.map(x => {
         return (
             <React.Fragment key={x.firstName}>
@@ -19,7 +17,6 @@ const Sidebar = () => {
             </React.Fragment>
         )
     })
-
 
     return (
         <nav className="sidebar">

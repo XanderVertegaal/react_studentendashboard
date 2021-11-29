@@ -10,14 +10,11 @@ type Props = {
 }
 
 const AssignmentSelector: React.FC<Props> = ({assignmentList, filterHandler, currentFilters}) => {
-
-    let assignmentItems = assignmentList.map((assignment: any) => {
-        return (
+    let assignmentItems = assignmentList.map(assignment => (
             <li key={`chk-${assignment}`} className="filter-list-item">
                 <input 
                     type="checkbox" 
                     id={`show-assignment-${assignment}`} 
-                    // key={`chk-${assignment}`} 
                     value={assignment}
                     onChange={filterHandler}
                     checked={currentFilters.assignments.includes(assignment)}
@@ -25,7 +22,7 @@ const AssignmentSelector: React.FC<Props> = ({assignmentList, filterHandler, cur
                 <FontAwesomeIcon icon={faBookOpen} className="icon"/>
                 <label htmlFor={`show-assignment-${assignment}`}>{assignment}</label>
             </li>)
-    })
+    )
     
     return (
         <div className="filter-list-wrapper">

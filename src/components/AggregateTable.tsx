@@ -9,7 +9,7 @@ type Props = {
 
 const AggregateTable: React.FC<Props> = ({studentData, filterMethod}) => {
 
-    // Copying state in order to modify it. Shallow copy with spread does not work.
+    // Make sure we make a deep copy of the current state before we modify it.
     const deepCopy = []
     for (let studentEntry of studentData) {
         let copiedProjects = [...studentEntry.projects]
